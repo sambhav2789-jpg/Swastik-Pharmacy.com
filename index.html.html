@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastik Pharmacy - Your Trusted Healthcare Partner</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary: #0e8388;
+            --primary-dark: #2e4f4f;
+            --secondary: #00a896;
+            --accent: #f26419;
+            --light-bg-solid: #e0f2f1;
+            --light-bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #ffffff 100%);
+            --dark-text: #2b2d42;
+            --gray-text: #6c757d;
+            --whatsapp: #25d366;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            scroll-behavior: smooth;
+        }
+        
+        body { 
+            color: var(--dark-text); 
+            line-height: 1.6; 
+            background: var(--light-bg-gradient); 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-pop {
+            animation: popIn 0.6s ease forwards;
+        }
+
+        /* Navigation Header */
+        header { 
+            background-color: #ffffff; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            transition: all 0.3s ease;
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.8rem 2rem; flex-wrap: wrap; gap: 10px; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .logo-text span { color: var(--primary-dark); }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark-text); font-weight: 600; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--primary); }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .header-contacts { display: flex; gap: 8px; }
+        .btn-call { 
+            background-color: var(--primary); 
+            color: white; 
+            padding: 0.5rem 0.9rem; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            transition: all 0.3s ease; 
+        }
+        .btn-call:hover { 
+            background-color: var(--primary-dark); 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15); 
+        }
+
+        /* Live Digital Clock Widget Header Style */
+        .header-time-widget {
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: var(--light-bg-solid);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Translate Widget Dropdown Styling */
+        #google_translate_element select {
+            padding: 5px 8px;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            background-color: #ffffff;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        .goog-te-gadget span, .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(14, 131, 136, 0.85), rgba(46, 79, 79, 0.85)), url('https://images.unsplash.com/photo-1586015555751-63bb77f4322a?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat; 
+            color: white; 
+            padding: 100px 20px; 
+            text-align: center; 
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 25px; }
+        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-main { 
+            background-color: var(--accent); 
+            color: white; 
+            padding: 0.8rem 1.8rem; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: all 0.3s ease;
+        }
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(242, 100, 25, 0.4);
+        }
+        .btn-secondary { 
+            background-color: transparent; 
+            color: white; 
+            border: 2px solid white; 
+            padding: 0.8rem 1.8rem; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* --- ANIMATED COUNTER SECTION --- */
+        .counter-section {
+            background: #ffffff;
+            padding: 40px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .counter-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .counter-card {
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--light-bg-solid);
+            transition: transform 0.3s ease;
+        }
+        .counter-card:hover {
+            transform: translateY(-5px);
+        }
+        .counter-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .counter-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-top: 5px;
+        }
+
+        /* General Section Styling */
+        section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; background-color: transparent; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 40px; color: var(--primary-dark); }
+
+        /* Products & Features Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .product-card { 
+            border: 1px solid #e0e0e0; 
+            border-radius: 8px; 
+            padding: 20px; 
+            text-align: center; 
+            transition: all 0.4s ease; 
+            background-color: #ffffff; 
+        }
+        .product-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12); 
+            border-color: var(--secondary);
+        }
+        .product-card h4 { margin: 10px 0; }
+
+        /* Featured Medicine Section Styles */
+        .medicine-section { 
+            background-color: var(--light-bg-solid); 
+            border-radius: 10px; 
+            margin-top: 20px; 
+            padding: 50px 30px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+        .medicine-search-box {
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+        .medicine-search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+        .medicine-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            max-height: 500px; 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        .medicine-card { 
+            background: white; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 8px; 
+            padding: 15px 10px; 
+            text-align: center; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05); 
+            transition: all 0.3s ease;
+        }
+        .medicine-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-color: var(--secondary);
+        }
+        .medicine-card h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.05rem; }
+        .medicine-card p { font-size: 0.85rem; color: var(--gray-text); }
+
+        /* Doctor Multi-Grid */
+        .doctor-multi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .doctor-card-complex { 
+            display: grid; 
+            grid-template-columns: 120px 1fr; 
+            gap: 20px; 
+            background-color: #ffffff; 
+            padding: 30px; 
+            border-radius: 10px; 
+            border: 1px solid #e0e0e0; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            transition: all 0.4s ease; 
+            align-items: center; 
+        }
+        .doctor-card-complex:hover { 
+            transform: translateY(-6px); 
+            border-color: var(--secondary); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12); 
+        }
+        .doctor-multi-profile-block { text-align: center; }
+        .doctor-icon-multi { 
+            font-size: 4rem; 
+            color: var(--primary); 
+            background: #e0f2f1; 
+            width: 100px; 
+            height: 100px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            margin: 0 auto 15px; 
+            border: 3px solid var(--primary); 
+            transition: transform 0.3s ease;
+        }
+        .doctor-card-complex:hover .doctor-icon-multi {
+            transform: rotate(5deg) scale(1.05);
+        }
+        .doctor-name-multi { font-size: 1.3rem; font-weight: 700; color: var(--primary-dark); }
+        .doctor-qual-multi { color: var(--gray-text); font-size: 0.9rem; font-style: italic; }
+        .doctor-nmc-multi { font-size: 0.8rem; color: var(--gray-text); margin-top: 3px; }
+        .doctor-multi-info-block ul { list-style: none; margin-top: 15px; }
+        .doctor-multi-info-block li { margin-bottom: 10px; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+        .info-highlight { font-weight: 700; color: var(--primary); }
+
+        /* Clinic Services Layout */
+        .clinic-services-block { 
+            background-color: #ffffff; 
+            padding: 40px 30px; 
+            border-radius: 10px; 
+            border: 1px solid #e0e0e0; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin: 0 auto; 
+            transition: all 0.3s ease;
+        }
+        .clinic-services-block h3 { color: var(--primary-dark); text-align: center; margin-bottom: 30px; font-size: 1.6rem; }
+        .services-grid-expanded { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 25px; 
+        }
+        .service-card {
+            background-color: var(--light-bg-solid);
+            padding: 25px 20px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-top-color: var(--accent);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .service-card h4 {
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        /* Upload & Contact Form */
+        .contact-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+            background-color: #ffffff; 
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            border: 1px solid #e0e0e0; 
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .btn-submit { 
+            background-color: var(--whatsapp); 
+            color: white; 
+            border: none; 
+            padding: 12px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-submit:hover { 
+            background-color: #1ebd56; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+        .contact-list { list-style: none; margin-top: 15px; }
+        .contact-list li { margin-bottom: 12px; }
+        .contact-list a { color: var(--primary); text-decoration: none; font-weight: bold; transition: color 0.3s; }
+        .contact-list a:hover { text-decoration: underline; color: var(--primary-dark); }
+
+        /* Map Section */
+        .map-section { margin-top: 40px; }
+        .map-container { width: 100%; height: 380px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        /* Floating WhatsApp Button Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float { 
+            position: fixed; 
+            width: 60px; 
+            height: 60px; 
+            bottom: 25px; 
+            right: 25px; 
+            background-color: var(--whatsapp); 
+            color: white; 
+            border-radius: 50px; 
+            text-align: center; 
+            font-size: 32px; 
+            z-index: 1000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-decoration: none; 
+            animation: pulse 2s infinite;
+            transition: background-color 0.3s;
+        }
+        .whatsapp-float:hover { 
+            background-color: #1ebd56; 
+        }
+
+        /* Footer */
+        footer { background-color: var(--primary-dark); color: white; text-align: center; padding: 25px 20px; margin-top: 50px; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .navbar { flex-direction: column; gap: 15px; padding: 1rem; }
+            .nav-links { justify-content: center; width: 100%; }
+            .header-actions { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .doctor-multi-grid { grid-template-columns: 1fr; }
+            .doctor-card-complex { grid-template-columns: 100px 1fr; padding: 20px; }
+            .doctor-icon-multi { width: 80px; height: 80px; font-size: 3rem; }
+        }
+        @media (max-width: 768px) {
+            .logo-text { font-size: 1.2rem; }
+            .hero h1 { font-size: 2rem; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 26px; bottom: 15px; right: 15px; }
+            section { padding: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <a href="#home" class="logo-container">
+                <div class="logo-text">
+                    Swastik <span>Pharmacy</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#featured">Medicines</a></li>
+                <li><a href="#doctors">Consultants</a></li>
+                <li><a href="#clinic-services">Clinic Services</a></li>
+                <li><a href="#order">Book Appointment</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="header-time-widget">
+                    🕒 <span id="clock-display">00:00:00 AM</span>
+                </div>
+
+                <div id="google_translate_element"></div>
+
+                <div class="header-contacts">
+                    <a href="tel:9847829195" class="btn-call">📞 9847829195</a>
+                    <a href="tel:9857840851" class="btn-call">📞 9857840851</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero" id="home">
+        <h1>Welcome to Swastik Pharmacy</h1>
+        <p>Your healthcare is our priority. Genuine medicines, specialist consultation, and complete clinic services. Follow Us on Social Media For More Updates.</p>
+        <div class="hero-btns">
+            <a href="#order" class="btn-main">Book Appointment / Order</a>
+            <a href="tel:9847829195" class="btn-secondary">Call Us</a>
+        </div>
+    </div>
+
+    <div class="counter-section animate-fade">
+        <div class="counter-grid">
+            <div class="counter-card">
+                <div class="counter-number" data-target="100">0</div>
+                <div class="counter-label">Happy Patients Daily</div>
+            </div>
+            <div class="counter-card">
+                <div class="counter-number" data-target="1000">0</div>
+                <div class="counter-label">Trusted Customers</div>
+            </div>
+            <div class="counter-card">
+                <div class="counter-number" data-target="100">0</div>
+                <div class="counter-label">Genuine Medicines </div>
+            </div>
+            <div class="counter-card">
+                <div class="counter-number" id="visit-counter">0</div>
+                <div class="counter-label">Total Patient Visits</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="services">
+        <div class="product-grid">
+            <div class="product-card animate-pop">
+                <h3>💊 100% Genuine Medicines</h3>
+                <p>Directly sourced from verified pharmaceutical companies.</p>
+            </div>
+            <div class="product-card animate-pop">
+                <h3>👨‍⚕️ Expert Pharmacist</h3>
+                <p>Free consultation and advice on dosage from our experts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="medicine-section animate-fade" id="featured">
+        <h2 class="section-title">Available Medicines Catalog</h2>
+        
+        <div class="medicine-search-box">
+            <input type="text" id="medicineSearch" onkeyup="filterMedicines()" placeholder="🔍 Search medicine by name or use...">
+        </div>
+
+        <div class="medicine-grid" id="medicineGrid">
+            
+            <div class="medicine-card"><h4>Devomine</h4><p>Nausea & Vomiting relief</p></div>
+            <div class="medicine-card"><h4>Rab 20</h4><p>Antacid & Acid Reflux</p></div>
+            <div class="medicine-card"><h4>Pantop 40</h4><p>Acidity & Heartburn relief</p></div>
+            <div class="medicine-card"><h4>Sinex</h4><p>Cold & Decongestant</p></div>
+            <div class="medicine-card"><h4>Moove Spray</h4><p>Topical Pain Relief</p></div>
+            <div class="medicine-card"><h4>Nims</h4><p>Painkiller & Anti-inflammatory</p></div>
+            <div class="medicine-card"><h4>Flexon</h4><p>Fever & Joint Pain Relief</p></div>
+
+            <div class="medicine-card"><h4>Paracetamol 650</h4><p>Fever & General Pain</p></div>
+            <div class="medicine-card"><h4>Cetirizine 10mg</h4><p>Allergy & Sneezing</p></div>
+            <div class="medicine-card"><h4>Azithromycin 500</h4><p>Antibiotic</p></div>
+            <div class="medicine-card"><h4>Amoxicillin 500</h4><p>Bacterial Infection</p></div>
+            <div class="medicine-card"><h4>Omeprazole 20mg</h4><p>Gastric Acid Reducer</p></div>
+            <div class="medicine-card"><h4>Ciprofloxacin 500</h4><p>Broad Spectrum Antibiotic</p></div>
+            <div class="medicine-card"><h4>Metformin 500mg</h4><p>Blood Sugar Control</p></div>
+            <div class="medicine-card"><h4>Amlodipine 5mg</h4><p>High Blood Pressure</p></div>
+            <div class="medicine-card"><h4>Atorvastatin 10mg</h4><p>Cholesterol Control</p></div>
+            <div class="medicine-card"><h4>Ibuprofen 400mg</h4><p>Pain & Inflammation</p></div>
+            <div class="medicine-card"><h4>Aceclofenac 100mg</h4><p>Joint Pain & Swelling</p></div>
+            <div class="medicine-card"><h4>Diclofenac Gel</h4><p>Muscle Pain Relief</p></div>
+            <div class="medicine-card"><h4>Montelukast 10mg</h4><p>Asthma & Allergy</p></div>
+            <div class="medicine-card"><h4>Levocetirizine 5mg</h4><p>Antihistamine</p></div>
+            <div class="medicine-card"><h4>Domperidone 10mg</h4><p>Anti-nausea & Indigestion</p></div>
+            <div class="medicine-card"><h4>Telmisartan 40mg</h4><p>Hypertension Care</p></div>
+            <div class="medicine-card"><h4>Losartan 50mg</h4><p>Blood Pressure Regulator</p></div>
+            <div class="medicine-card"><h4>Ranitidine 150mg</h4><p>Stomach Acid Relief</p></div>
+            <div class="medicine-card"><h4>Dexamethasone</h4><p>Anti-inflammatory Steroid</p></div>
+            <div class="medicine-card"><h4>Prednisolone 5mg</h4><p>Allergy & Immune Support</p></div>
+            <div class="medicine-card"><h4>Metronidazole 400</h4><p>Gut & Infection Treatment</p></div>
+            <div class="medicine-card"><h4>Norfloxacin 400</h4><p>Urinary & Gut Infection</p></div>
+            <div class="medicine-card"><h4>Ofloxacin 200mg</h4><p>Antibacterial Care</p></div>
+            <div class="medicine-card"><h4>Cefixime 200mg</h4><p>Bacterial Infection</p></div>
+            <div class="medicine-card"><h4>Clavam 625</h4><p>Antibiotic Combination</p></div>
+            <div class="medicine-card"><h4>Dolo 650</h4><p>Fever & Pain Relief</p></div>
+            <div class="medicine-card"><h4>Combiflam</h4><p>Body Ache & Headache</p></div>
+            <div class="medicine-card"><h4>Saridon</h4><p>Fast Headache Relief</p></div>
+            <div class="medicine-card"><h4>Disprin</h4><p>Headache & Soluble Pain</p></div>
+            <div class="medicine-card"><h4>Volini Gel</h4><p>Instant Pain Relief</p></div>
+            <div class="medicine-card"><h4>Betadine Ointment</h4><p>Antiseptic Wound Care</p></div>
+            <div class="medicine-card"><h4>B-Complex Syrup</h4><p>Vitamin Supplement</p></div>
+            <div class="medicine-card"><h4>Neurobion Forte</h4><p>Vitamin B12 Supplement</p></div>
+            <div class="medicine-card"><h4>Limcee 500mg</h4><p>Vitamin C Immunity</p></div>
+            <div class="medicine-card"><h4>Calcium D3</h4><p>Bone & Joint Support</p></div>
+            <div class="medicine-card"><h4>ORALYTE (ORS)</h4><p>Rehydration Salts</p></div>
+            <div class="medicine-card"><h4>Digene Syrup</h4><p>Antacid & Gas Relief</p></div>
+            <div class="medicine-card"><h4>Gelusil Liquid</h4><p>Heartburn & Acidity</p></div>
+            <div class="medicine-card"><h4>Dulcolax 5mg</h4><p>Laxative & Constipation</p></div>
+            <div class="medicine-card"><h4>Cremaffin Syrup</h4><p>Stool Softener</p></div>
+            <div class="medicine-card"><h4>Ascoril LS Syrup</h4><p>Cough & Mucus Relief</p></div>
+            <div class="medicine-card"><h4>Benadryl Syrup</h4><p>Cough & Throat Care</p></div>
+            <div class="medicine-card"><h4>Corex DX Syrup</h4><p>Dry Cough Relief</p></div>
+            <div class="medicine-card"><h4>Otrivin Adult</h4><p>Nasal Decongestant Spray</p></div>
+            <div class="medicine-card"><h4>Eye Cool Drops</h4><p>Eye Irritation Relief</p></div>
+            <div class="medicine-card"><h4>Ciplox Eye Drops</h4><p>Eye Infection Care</p></div>
+            <div class="medicine-card"><h4>Candid B Cream</h4><p>Anti-fungal Skin Cream</p></div>
+            <div class="medicine-card"><h4>Dermaford Cream</h4><p>Skin Rash Care</p></div>
+            <div class="medicine-card"><h4>Silverex Ointment</h4><p>Burn Injury Cream</p></div>
+
+        </div>
+    </section>
+
+    <section id="doctors" class="animate-fade">
+        <h2 class="section-title">Our Senior Consultants</h2>
+        
+        <div class="doctor-multi-grid">
+            
+            <div class="doctor-card-complex">
+                <div class="doctor-multi-profile-block">
+                    <div class="doctor-icon-multi">👨‍⚕️</div>
+                    <div class="doctor-nmc-multi">NMC: 6691</div>
+                </div>
+                <div class="doctor-multi-info-block">
+                    <div class="doctor-name-multi">Dr. Gopal Sagar D.C</div>
+                    <p style="color:var(--accent); font-weight:600;">Senior Consultant Orthopedic Surgeon</p>
+                    <div class="doctor-qual-multi">MBBS MS (AIIMS)</div>
+                    <ul>
+                        <li>📅 <span class="info-highlight">Every Month, First Saturday</span></li>
+                        <li>⏰ <span class="info-highlight">Time: 9:00 AM</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="doctor-card-complex">
+                <div class="doctor-multi-profile-block">
+                    <div class="doctor-icon-multi">👨‍⚕️</div>
+                    <div class="doctor-nmc-multi">NMC: 8714</div>
+                </div>
+                <div class="doctor-multi-info-block">
+                    <div class="doctor-name-multi">Dr. Sandeep Chandra Shrestha</div>
+                    <p style="color:var(--accent); font-weight:600;">Internal Medicine & Endocrinology</p>
+                    <div class="doctor-qual-multi">MBBS MD (Internal Medicine), Fellowship In Endocrinology</div>
+                    <ul>
+                        <li>📅 <span class="info-highlight">Call for Visiting Times</span></li>
+                        <li>📞 Pre-booking required for consultation.</li>
+                    </ul>
+                </div>
+            </div>
+<div class="doctor-card-complex">
+                <div class="doctor-multi-profile-block">
+                    <div class="doctor-icon-multi">👨‍⚕️</div>
+                    <div class="doctor-nmc-multi">NMC: 28144</div>
+                </div>
+                <div class="doctor-multi-info-block">
+                    <div class="doctor-name-multi">Dr. Sudeep Chaudhary</div>
+                    <p style="color:var(--accent); font-weight:600;">Consultant Physician</p>
+                    <div class="doctor-qual-multi">MBBS, HA, CTEVT (10+ Years Experience)</div>
+                    <ul>
+                        <li>📅 <span class="info-highlight">Available 24/7</span></li>
+                        <li>📞 Contact clinic for emergency & routine consultations.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clinic-services" class="animate-fade">
+        <div class="clinic-services-block">
+            <h3>Clinic Services Available</h3>
+            <div class="services-grid-expanded">
+                
+                <div class="service-card">
+                    <div class="service-icon">🦴</div>
+                    <h4>Digital X-Ray</h4>
+                    <p>High-resolution, low-radiation imaging for clear diagnostic results.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h4>Pathology Lab Services</h4>
+                    <p>Comprehensive blood, urine, and clinical tissue testing on-site.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h4>In-House Pharmacy Service</h4>
+                    <p>Immediate access to prescribed medications upon doctor visit.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h4>Specialist Consultations</h4>
+                    <p>Scheduled appointments with visiting senior consultants and surgeons.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h4>Dressing & First Aid</h4>
+                    <p>Professional minor wound management, dressing, and routine vaccinations.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h4>Routine Health Screenings</h4>
+                    <p>Blood pressure checkups, sugar monitoring, and general health tracking.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="animate-fade">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <h3>💊</h3>
+                <h4>Prescription Drugs</h4>
+                <p>Complete range of critical medicines.</p>
+            </div>
+            <div class="product-card">
+                <h3>🩺</h3>
+                <h4>Medical Devices</h4>
+                <p>BP Monitors, Glucometers, and Nebulizers.</p>
+            </div>
+            <div class="product-card">
+                <h3>🧴</h3>
+                <h4>Personal Care</h4>
+                <p>Skincare, baby products, and hygiene essentials.</p>
+            </div>
+            <div class="product-card">
+                <h3>🌿</h3>
+                <h4>Ayurvedic & Wellness</h4>
+                <p>Herbal medicines and wellness products.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="animate-fade">
+        <h2 class="section-title">Book Appointment / Order Service</h2>
+        <div class="contact-container">
+            
+            <div>
+                <h3>Service & Appointment Booking Form</h3>
+                <p style="margin-bottom: 20px; color: var(--gray-text);">Select your service or consultant below to place an instant booking via WhatsApp.</p>
+                <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="Enter mobile number">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Select Service / Specialty</label>
+                        <select id="service" required>
+                            <option value="" disabled selected>-- Choose Service / Consultant --</option>
+                            <option value="Orthopedic Consultation (Dr. Gopal Sagar D.C)">Orthopedic Consultation (Dr. Gopal Sagar D.C)</option>
+                            <option value="Endocrinology & Internal Medicine (Dr. Sandeep Chandra Shrestha)">Endocrinology & Internal Medicine (Dr. Sandeep Chandra Shrestha)</option>
+                            <option value="Digital X-Ray">Digital X-Ray Service</option>
+                            <option value="Pathology Lab Services">Pathology Lab Services (Blood/Urine Test)</option>
+                            <option value="Prescription Medicine Order">Prescription Medicine Order</option>
+                            <option value="Dressing & First Aid">Dressing & First Aid</option>
+                            <option value="General Health Screening">General Health Screening</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Appointment Date</label>
+                        <input type="date" id="preferredDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="prescription">Upload Prescription / Report (Optional Photo/PDF)</label>
+                        <input type="file" id="prescription" accept="image/*,.pdf">
+                    </div>
+                    <button type="submit" class="btn-submit">💬 Confirm Booking via WhatsApp</button>
+                </form>
+            </div>
+
+            <div id="contact">
+                <h3>Store Information</h3>
+                <p style="margin-bottom: 15px; color: var(--gray-text);">Visit us or contact us directly.</p>
+                
+                <ul class="contact-list">
+                    <li><strong>📍 Location:</strong> Lamahi, Dang, Nepal</li>
+                    <li><strong>📞 Primary Phone:</strong> <a href="tel:9847829195">9847829195</a></li>
+                    <li><strong>📞 Secondary Phone:</strong> <a href="tel:9857840851">9857840851</a></li>
+                    <li><strong>⏰ Store Timings:</strong> 8:00 AM - 10:00 PM (7 Days)</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="map-section animate-fade" id="map">
+        <h2 class="section-title">Find Us On Google Maps</h2>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14152.000000000000!2d82.292!3d27.876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3997f1f1f1f1f1f1%3A0x0!2sLamahi%2C%20Nepal!5e0!3m2!1sen!2snp!4v1600000000000!5m2!1sen!2snp" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <a href="https://wa.me/9779847829195?text=Hello%20Swastik%20Pharmacy,%20I%20would%20like%20to%20book%20an%20appointment." 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Chat on WhatsApp">
+        💬
+    </a>
+
+    <footer>
+        <p>© 2026 Swastik Pharmacy, Lamahi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 1. Live Running Clock
+        function updateLiveClock() {
+            const clockElement = document.getElementById('clock-display');
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            const formattedHours = String(hours).padStart(2, '0');
+
+            clockElement.innerText = `${formattedHours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateLiveClock, 1000);
+        updateLiveClock();
+
+        // 2. Patient Visit Counter (Local Storage Persistence)
+        function handlePatientVisitCounter() {
+            const baseVisits = 1250;
+            let visits = localStorage.getItem('swastik_patient_visits');
+
+            if (!visits) {
+                visits = baseVisits + 1;
+            } else {
+                visits = parseInt(visits, 10) + 1;
+            }
+
+            localStorage.setItem('swastik_patient_visits', visits);
+            return visits;
+        }
+
+        const currentVisits = handlePatientVisitCounter();
+
+        // 3. Counter Animations
+        const counters = document.querySelectorAll('.counter-number');
+        let animated = false;
+
+        function startCounters() {
+            counters.forEach(counter => {
+                let target;
+                if (counter.id === 'visit-counter') {
+                    target = currentVisits;
+                } else {
+                    target = +counter.getAttribute('data-target');
+                }
+
+                const speed = 50; 
+                const increment = Math.ceil(target / speed);
+
+                let count = 0;
+                const updateCount = () => {
+                    count += increment;
+                    if (count < target) {
+                        counter.innerText = count + (counter.getAttribute('data-target') === '100' && counter.nextElementSibling.innerText.includes('%') ? '%' : '+');
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target + (counter.getAttribute('data-target') === '100' && counter.nextElementSibling.innerText.includes('%') ? '%' : '+');
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const section = document.querySelector('.counter-section');
+            if (section) {
+                const position = section.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                if (position < screenPosition && !animated) {
+                    animated = true;
+                    startCounters();
+                }
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const section = document.querySelector('.counter-section');
+            if (section && section.getBoundingClientRect().top < window.innerHeight) {
+                animated = true;
+                startCounters();
+            }
+        });
+
+        // 4. Interactive Search Filter for Medicines
+        function filterMedicines() {
+            const input = document.getElementById('medicineSearch');
+            const filter = input.value.toLowerCase();
+            const grid = document.getElementById('medicineGrid');
+            const cards = grid.getElementsByClassName('medicine-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const title = cards[i].getElementsByTagName('h4')[0];
+                const desc = cards[i].getElementsByTagName('p')[0];
+                const textValue = (title.textContent || title.innerText) + " " + (desc.textContent || desc.innerText);
+                
+                if (textValue.toLowerCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const preferredDate = document.getElementById('preferredDate').value;
+            const fileInput = document.getElementById('prescription');
+            const hasFile = fileInput.files.length > 0;
+
+            let message = `Hello Swastik Pharmacy,%0A%0AI would like to book an appointment/service:%0A- *Name:* ${encodeURIComponent(name)}%0A- *Phone:* ${encodeURIComponent(phone)}%0A- *Service Required:* ${encodeURIComponent(service)}`;
+
+            if (preferredDate) {
+                message += `%0A- *Preferred Date:* ${encodeURIComponent(preferredDate)}`;
+            }
+
+            if (hasFile) {
+                message += `%0A- *Document:* File attached (sending image/pdf directly in chat)`;
+                alert("Opening WhatsApp! Please attach/paste your prescription or report directly into the chat.");
+            }
+
+            const whatsappNumber = "9779847829195";
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ne,en,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
